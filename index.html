@@ -13,29 +13,70 @@
 </head>
 <body>
 
-<h1>Expense Tracker</h1>
-<a href="categories.html">Manage Categories</a>
-<!-- 一级分类 -->
-<select id="type">
-  <option value="Needs">Needs</option>
-  <option value="Wants">Wants</option>
-  <option value="Savings">Savings</option>
-</select>
+<body>
 
-<!-- 二级分类 -->
-<select id="category"></select>
+<div class="container">
 
-<input type="number" id="amount" placeholder="Amount" />
-<input type="text" id="note" placeholder="Note" />
+  <h1>Expense Tracker</h1>
+  <p class="subtitle">Track your daily spending calmly.</p>
 
-<button onclick="addExpense()">Add</button>
-<button onclick="exportExcel()">Export Excel</button>
+  <div class="card">
+    <div class="section-title">Monthly Summary</div>
 
-<hr/>
+    <div class="summary-grid">
+      <div class="summary-item">
+        <h3>Needs</h3>
+        <p id="needsTotal">RM0</p>
+      </div>
 
-<h2>Records</h2>
-<ul id="list"></ul>
+      <div class="summary-item">
+        <h3>Wants</h3>
+        <p id="wantsTotal">RM0</p>
+      </div>
+
+      <div class="summary-item">
+        <h3>Savings</h3>
+        <p id="savingsTotal">RM0</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+
+    <div class="section-title">Add Expense</div>
+
+    <select id="type">
+      <option value="Needs">Needs</option>
+      <option value="Wants">Wants</option>
+      <option value="Savings">Savings</option>
+    </select>
+
+    <select id="category"></select>
+
+    <input id="amount" type="number" placeholder="Amount" />
+
+    <input id="note" placeholder="Note" />
+
+    <button onclick="addExpense()">
+      Save Expense
+    </button>
+
+  </div>
+
+  <div class="card">
+
+    <div class="section-title">
+      Recent Records
+    </div>
+
+    <ul id="list"></ul>
+
+  </div>
+
+</div>
 
 <script src="app.js"></script>
+
+</body>
 </body>
 </html>
