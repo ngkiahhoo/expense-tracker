@@ -1,0 +1,17 @@
+body {
+  font-family: Arial;
+  padding: 20px;
+  max-width: 400px;
+  margin: auto;
+}
+
+input, select, button {
+  display: block;
+  margin: 10px 0;
+  width: 100%;
+  padding: 10px;
+}
+
+li {
+  margin: 5px 0;
+}

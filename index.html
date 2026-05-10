@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Expense Tracker</title>
+
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- SheetJS -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+
+<h1>Expense Tracker</h1>
+<a href="categories.html">Manage Categories</a>
+<!-- 一级分类 -->
+<select id="type">
+  <option value="Needs">Needs</option>
+  <option value="Wants">Wants</option>
+  <option value="Savings">Savings</option>
+</select>
+
+<!-- 二级分类 -->
+<select id="category"></select>
+
+<input type="number" id="amount" placeholder="Amount" />
+<input type="text" id="note" placeholder="Note" />
+
+<button onclick="addExpense()">Add</button>
+<button onclick="exportExcel()">Export Excel</button>
+
+<hr/>
+
+<h2>Records</h2>
+<ul id="list"></ul>
+
+<script src="app.js"></script>
+</body>
+</html>
