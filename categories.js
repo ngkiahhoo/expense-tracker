@@ -1,4 +1,4 @@
-const API = "http://192.168.0.157:5233/api";
+const API = "https://expense-tracker-api-pgdr.onrender.com/api";
 
 let categories = [];
 
