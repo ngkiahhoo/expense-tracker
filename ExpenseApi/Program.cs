@@ -55,4 +55,5 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-app.Run("http://0.0.0.0:5233");
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5233";
+app.Run($"http://0.0.0.0:{port}");
