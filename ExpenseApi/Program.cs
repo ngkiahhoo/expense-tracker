@@ -4,10 +4,12 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 数据库
-builder.Services.AddDbContext<AppDbContext>(opt =>
-    opt.UseInMemoryDatabase("ExpenseDb"));
+// PostgreSQL
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(
+        builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// CORS
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll",
@@ -19,37 +21,30 @@ builder.Services.AddCors(options =>
         });
 });
 
-// Controller
+// Controllers
 builder.Services.AddControllers();
 
 // Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// CORS
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAll",
-        p => p.AllowAnyOrigin()
-              .AllowAnyMethod()
-              .AllowAnyHeader());
-});
-
 var app = builder.Build();
+
 app.UseCors("AllowAll");
 
-// Swagger
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseCors("AllowAll");
-
 app.MapControllers();
 
+// 自动 Migration
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
+    db.Database.Migrate();
+
+    // 默认分类
     if (!db.Categories.Any())
     {
         db.Categories.AddRange(
@@ -68,4 +63,5 @@ using (var scope = app.Services.CreateScope())
 }
 
 var port = Environment.GetEnvironmentVariable("PORT") ?? "5233";
+
 app.Run($"http://0.0.0.0:{port}");
